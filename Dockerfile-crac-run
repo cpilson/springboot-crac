@@ -1,0 +1,13 @@
+FROM azul/zulu-openjdk:21-jdk-crac-latest
+
+ENV ENV_SUPER_SECRET=${ENV_SUPER_SECRET}
+
+COPY docker-entrypoint.sh /opt
+RUN chmod +x /opt/docker-entrypoint.sh
+COPY crac-files /opt/crac-files
+COPY build/libs/*-SNAPSHOT.jar /opt/app/app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT [ "/opt/docker-entrypoint.sh" ]
+# ENTRYPOINT ["java", "-XX:CRaCRestoreFrom=/opt/crac-files"]

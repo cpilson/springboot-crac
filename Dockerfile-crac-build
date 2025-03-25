@@ -1,0 +1,7 @@
+FROM azul/zulu-openjdk:21-jdk-crac-latest
+
+ENV ENV_SUPER_SECRET=${ENV_SUPER_SECRET}
+
+COPY build/libs/*-SNAPSHOT.jar /opt/app/app.jar
+
+EXPOSE 8080
